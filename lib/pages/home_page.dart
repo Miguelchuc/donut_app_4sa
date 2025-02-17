@@ -1,3 +1,9 @@
+import 'package:donut_app_4sa/tabs/burger_tab.dart';
+import 'package:donut_app_4sa/tabs/donut._tab.dart';
+import 'package:donut_app_4sa/tabs/pancakes_tab.dart';
+import 'package:donut_app_4sa/tabs/pizza_tab.dart';
+import 'package:donut_app_4sa/tabs/smoothie_tab.dart';
+import 'package:donut_app_4sa/utils/my_tab.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,52 +14,83 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Widget> myTaps = [
+    const MyTab(
+      iconPath: 'lib/icons/donut.png',
+    ),
+    const MyTab(
+      iconPath: 'lib/icons/burger.png',
+    ),
+    const MyTab(
+      iconPath: 'lib/icons/smoothie.png',
+    ),
+    const MyTab(
+      iconPath: 'lib/icons/pancakes.png',
+    ),
+    const MyTab(
+      iconPath: 'lib/icons/pizza.png',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
+    return DefaultTabController(
+      length: myTaps.length,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
 
-        //left menu icon
-        leading: Icon(
-          Icons.menu,
-          color: Colors.grey[800],
+          //left menu icon
+          leading: Icon(
+            Icons.menu,
+            color: Colors.grey[800],
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 24.0),
+              child: Icon(Icons.person),
+            )
+          ],
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 24.0),
-            child: Icon(Icons.person),
-          )
-        ],
-      ),
-      body: Column(
-        children: [
-          //1. Texto principal (MainText)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Row(
-              children: [
-                Text(
-                  'I want to ',
-                  style: TextStyle(fontSize: 32),
-                ),
-                Text(
-                  'Eat',
-                  style: TextStyle(
-                      //Tamaño de letra
-                      fontSize: 32,
-                      //Negritas
-                      fontWeight: FontWeight.bold,
-                      //Subrayado
-                      decoration: TextDecoration.underline),
-                ),
-              ],
+        body: Column(
+          children: [
+            //1. Texto principal (MainText)
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                children: [
+                  Text(
+                    'I want to ',
+                    style: TextStyle(fontSize: 32),
+                  ),
+                  Text(
+                    'Eat',
+                    style: TextStyle(
+                        //Tamaño de letra
+                        fontSize: 32,
+                        //Negritas
+                        fontWeight: FontWeight.bold,
+                        //Subrayado
+                        decoration: TextDecoration.underline),
+                  ),
+                ],
+              ),
             ),
-          )
-          //2. Pestañas (TabBar)
-          //3. Contenido de pestañas (TabBarView)
-          //4. Carrito (Cart)
-        ],
+            //2. Pestañas (TabBar)
+            TabBar(tabs: myTaps),
+            //3. Contenido de pestañas (TabBarView)
+            Expanded(
+              child: TabBarView(children: [
+                DonutTab(),
+                BurgerTab(),
+                SmoothieTab(),
+                PancakesTab(),
+                PizzaTab(),
+              ]),
+            )
+            //4. Carrito (Cart)
+          ],
+        ),
       ),
     );
   }
