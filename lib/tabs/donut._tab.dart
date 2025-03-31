@@ -9,12 +9,12 @@ class DonutTab extends StatelessWidget {
     return GridView.builder(
         //prepa 1 como se va a organizar
         //sliver: escrol personalizable
-        //crossAxiscount eje vertical columnas
+        //crossAxiscount eje vertical columnas 
         //GridDelegate encargado de organizar
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             //numero de columnas
             crossAxisCount: 2),
-        //cuantos elementos
+        //cuantos elementos numero de columnas en el grid 
         itemCount: 4,
         padding: const EdgeInsets.all(12),
         //Que elemento se construira
