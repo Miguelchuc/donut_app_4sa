@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DonutTile extends StatelessWidget {
@@ -46,6 +47,38 @@ class DonutTile extends StatelessWidget {
                         fontSize: 18,
                         color: donutColor[800]),
                   ),
+                ),
+              ],
+            ),
+            //Donut price
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              child: Image.asset(imageName),
+            ),
+            //Donut flavor text
+            Padding(
+              padding: EdgeInsets.only(bottom: 4),
+              child: Text(
+                donutFlavor,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50,
+                    color: donutColor[800]),
+              ),
+            ),
+
+            Text(
+              "Donut price",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.grey,
+              ),
+            ),
+            //icons
+            Row(
+              children: [
+                Align(
+                  alignment: Alignment.bottomLeft,
                 )
               ],
             )

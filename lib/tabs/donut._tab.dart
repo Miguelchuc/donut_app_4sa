@@ -1,25 +1,35 @@
+import "package:donut_app_4sa/utils/donut_tile.dart";
 import 'package:flutter/material.dart';
 
 class DonutTab extends StatelessWidget {
-  const DonutTab({super.key});
+  final List donutsOnSale = [
+    ["Ice Cream", "36", Colors.blue, "lib/images/icecream_donut.png"],
+    ["Stramberry", "45", Colors.red, "lib/images/strawberry_donut.png"],
+    ["Grape Ape", "84", Colors.purple, "lib/images/grape_donut.png"],
+    ["Choco", "95", Colors.brown, "lib/images/chocolate_donut.png"],
+  ];
 
+  DonutTab({super.key});
   @override
   Widget build(BuildContext context) {
-    //GridView para hacer regillas
     return GridView.builder(
-        //prepa 1 como se va a organizar
-        //sliver: escrol personalizable
-        //crossAxiscount eje vertical columnas 
-        //GridDelegate encargado de organizar
+        //Prepa 1: Como se va a organizar
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //numero de columnas
-            crossAxisCount: 2),
-        //cuantos elementos numero de columnas en el grid 
+            //Número de columnas
+            crossAxisCount: 2,
+            //proporcion entre ancho y largo
+            childAspectRatio: 1 / 1.5),
+        //Cuantos elementos
         itemCount: 4,
         padding: const EdgeInsets.all(12),
         //Que elemento se construira
         itemBuilder: (context, index) {
-          return;
+          return DonutTile(
+            donutFlavor: donutsOnSale[index][0],
+            donutPrice: donutsOnSale[index][1],
+            donutColor: donutsOnSale[index][2],
+            imageName: donutsOnSale[index][3],
+          );
         });
   }
 }
