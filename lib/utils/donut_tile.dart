@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DonutTile extends StatelessWidget {
@@ -7,13 +6,15 @@ class DonutTile extends StatelessWidget {
   //dynamic porque sera de tipo color
   final dynamic donutColor;
   final String imageName;
+  final String donutStore;
 
   const DonutTile(
       {super.key,
       required this.donutFlavor,
       required this.donutPrice,
       required this.donutColor,
-      required this.imageName});
+      required this.imageName,
+      required this.donutStore});
 
   @override
   Widget build(BuildContext context) {
@@ -68,18 +69,38 @@ class DonutTile extends StatelessWidget {
             ),
 
             Text(
-              "Donut price",
+              donutStore,
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.grey,
               ),
             ),
-            //icons
+            //Icons
             Row(
               children: [
                 Align(
                   alignment: Alignment.bottomLeft,
-                )
+                  child: Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Icon(
+                      Icons.favorite_border_outlined,
+                      size: 40,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 240),
+                    child: Text(
+                      'Add',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ),
               ],
             )
           ],
