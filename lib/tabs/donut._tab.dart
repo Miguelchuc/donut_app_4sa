@@ -5,7 +5,7 @@ class DonutTab extends StatelessWidget {
   final List donutsOnSale = [
     [
       "Ice Cream",
-      "Donas hunucma",
+      "Donass hunucma",
       "36",
       Colors.blue,
       "lib/images/icecream_donut.png"
