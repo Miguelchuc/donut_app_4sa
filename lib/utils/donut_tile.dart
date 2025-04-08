@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class DonutTile extends StatelessWidget {
   final String donutFlavor;
   final String donutPrice;
-  //dynamic porque sera de tipo color
   final dynamic donutColor;
   final String imageName;
   final String donutStore;
+  final Function(String, String) onAddToCart; // Función pasada desde DonutTab
 
   const DonutTile(
       {super.key,
@@ -14,17 +14,16 @@ class DonutTile extends StatelessWidget {
       required this.donutPrice,
       required this.donutColor,
       required this.imageName,
-      required this.donutStore});
+      required this.donutStore,
+      required this.onAddToCart});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Container(
-        //color: donutColor[50],
         decoration: BoxDecoration(
-          color: donutColor[50],
-          //esquinas redondeadas
+          color: donutColor[70],
           borderRadius: BorderRadius.circular(24),
         ),
         child: Column(
@@ -51,14 +50,12 @@ class DonutTile extends StatelessWidget {
                 ),
               ],
             ),
-            //Donut price
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               child: Image.asset(imageName),
             ),
-            //Donut flavor text
             Padding(
-              padding: EdgeInsets.only(bottom: 4),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 donutFlavor,
                 style: TextStyle(
@@ -67,15 +64,10 @@ class DonutTile extends StatelessWidget {
                     color: donutColor[800]),
               ),
             ),
-
             Text(
               donutStore,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 20, color: Colors.grey),
             ),
-            //Icons
             Row(
               children: [
                 Align(
@@ -84,20 +76,23 @@ class DonutTile extends StatelessWidget {
                     padding: const EdgeInsets.all(30.0),
                     child: Icon(
                       Icons.favorite_border_outlined,
-                      size: 40,
+                      size: 50,
                     ),
                   ),
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 240),
-                    child: Text(
-                      'Add',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline),
+                    padding: const EdgeInsets.only(left: 275),
+                    child: IconButton(
+                      onPressed: () {
+                        onAddToCart(
+                            donutFlavor, donutPrice); // Llamamos a la función
+                      },
+                      icon: Icon(
+                        Icons.add,
+                        size: 40,
+                      ),
                     ),
                   ),
                 ),
